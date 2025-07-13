@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getMessages, sendMessage } from '../api';
 
-function Chat({ user, onLogout }) {
+function Chat({ user, onBack, onLogout }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isSending, setIsSending] = useState(false);
@@ -74,7 +74,11 @@ function Chat({ user, onLogout }) {
       <header>
         <h2>Chat General</h2>
         <p>Conectado como: <strong>{user?.username}</strong></p>
-        <button onClick={onLogout}>Cerrar sesión</button>
+        
+          <div className="chat-actions">
+          <button onClick={onBack}>Volver al Menú</button>
+          <button onClick={onLogout}>Cerrar sesión</button>
+        </div>
       </header>
 
       {error && <div className="error-message">{error}</div>}
