@@ -1,0 +1,90 @@
+/* ESTILADO DEL INFORME DIGITAL*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.container {
+    width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid black;
+}
+h1, h2, p {
+    text-align: center;
+}
+.form-group {
+    margin: 15px 0;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.input-line {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.small-input {
+    width: 100px;
+}
+.inline-group {
+    display: flex;
+    justify-content: space-between;
+}
+.inline-group .input-line {
+    width: calc(33.33% - 10px);
+}
+.inline-checks {
+    display: flex;
+    justify-content: space-between;
+}
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+.print-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button-back {
+    text-align: center;
+    padding-top: 10px;
+}
+
+@media print {
+    button {
+        display: none;
+    }
+}
+
+/* menu-principal.css */
+.menu-principal {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.menu-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.menu-options button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.logout-button {
+  margin-top: 30px;
+  background-color: #f44336;
+  color: white;
+}
