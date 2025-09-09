@@ -4,7 +4,7 @@ import cors from 'cors';
 import authRoutes from './routes/auth.js';
 import messageRoutes from './routes/messages.js';
 import dotenv from 'dotenv';
-
+import userRoutes from './routes/users.js';
 
 dotenv.config();
 
@@ -19,6 +19,7 @@ requiredEnvVars.forEach(varName => {
 
 const app = express();
 app.use(express.json());
+
 
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:5173',
@@ -54,6 +55,8 @@ app.use('/api/auth', (req, res, next) => {
 app.use('/api/auth', authRoutes); 
 
 app.use('/api/messages', messageRoutes);
+  
+app.use('/api/users', userRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Ruta no encontrada' });

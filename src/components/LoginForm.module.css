@@ -1,4 +1,6 @@
 /* Estilos generales del formulario */
+
+/*
 form {
     max-width: 400px;
     margin: 2rem auto;
@@ -9,15 +11,13 @@ form {
     font-family: 'Arial', sans-serif;
   }
   
-  /* Título del formulario */
   form h2 {
-    color: #ff0000; /* Rojo */
+    color: #ff0000; 
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 1.8rem;
   }
   
-  /* Campos de entrada */
   form input {
     width: 100%;
     padding: 12px;
@@ -31,15 +31,14 @@ form {
   
   form input:focus {
     outline: none;
-    border-color: #ff0000; /* Rojo */
-    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.1); /* Sutil sombra roja */
+    border-color: #ff0000; 
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.1); 
   }
   
-  /* Botón de envío */
   form button {
     width: 100%;
     padding: 12px;
-    background-color: #ff0000; /* Rojo */
+    background-color: #ff0000; 
     color: white;
     border: none;
     border-radius: 4px;
@@ -50,18 +49,16 @@ form {
   }
   
   form button:hover {
-    background-color: #cc0000; /* Rojo más oscuro al pasar el mouse */
+    background-color: #cc0000; 
   }
   
-  /* Mensajes de error (puedes añadirlos más tarde) */
   .error-message {
-    color: #ff0000; /* Rojo */
+    color: #ff0000; 
     font-size: 0.9rem;
     margin-top: -0.5rem;
     margin-bottom: 1rem;
   }
   
-  /* Estilos responsivos */
   @media (max-width: 480px) {
     form {
       padding: 1.5rem;
