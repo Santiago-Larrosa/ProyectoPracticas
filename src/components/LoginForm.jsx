@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './AuthForms.css';
 
 
-const LoginForm = ({ onLogin }) => {
+const LoginForm = ({ onLogin, onCambioRegistro }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -39,7 +39,8 @@ const LoginForm = ({ onLogin }) => {
     }
   };
 
-  return (
+    return (
+      <div>
     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', maxWidth: '300px', margin: 'auto' }}>
       <h2>Iniciar Sesión</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -62,7 +63,10 @@ const LoginForm = ({ onLogin }) => {
       <button type="submit" disabled={loading} style={{ padding: '10px' }}>
         {loading ? 'Ingresando...' : 'Ingresar'}
       </button>
-    </form>
+            </form>
+            <button onClick={onCambioRegistro}>Ir al registro del DOE </button>
+
+        </div>
   );
 };
 
