@@ -1,23 +1,19 @@
-import { useState } from 'react';
+ï»¿import { useState } from 'react';
 import AlumnoDetalle from './AlumnoDetalle';
 import './Chat.css';
 
 function RegistroDOE({ onBack }) {
-    const [alumnos, setAlumnos] = useState([
-        {
-            id: 1, nombre: "Juan Pérez", curso: "3°A", fecha: "2025-03-10", observaciones: [
-                { id: 1, texto: "Problemas de concentración en clase" },
-                { id: 2, texto: "Se reunió con orientador el 15/03" }
-            ]
-        },
-        {
-            id: 2, nombre: "María Gómez", curso: "2°B", fecha: "2025-04-22", observaciones: [
-                { id: 1, texto: "Alto rendimiento académico" }
-            ]
-        },
-    ]);
-
-    const [nuevoAlumno, setNuevoAlumno] = useState({ nombre: "", curso: "", fecha: "" });
+    const [alumnos, setAlumnos] = useState([]);
+    const [nuevoAlumno, setNuevoAlumno] = useState({
+        nombre: "",
+        curso: "",
+        fecha: "",
+        dni: "",
+        edad: "",
+        direccion: "",
+        telefono: "",
+        tutor: ""
+    });
     const [alumnoSeleccionado, setAlumnoSeleccionado] = useState(null);
 
     const handleChange = (e) => {
@@ -32,7 +28,10 @@ function RegistroDOE({ onBack }) {
             ...alumnos,
             { id: Date.now(), ...nuevoAlumno, observaciones: [] }
         ]);
-        setNuevoAlumno({ nombre: "", curso: "", fecha: "" });
+        setNuevoAlumno({
+            nombre: "", curso: "", fecha: "", dni: "",
+            edad: "", direccion: "", telefono: "", tutor: ""
+        });
     };
 
     const handleAbrirAlumno = (alumno) => {
@@ -60,26 +59,14 @@ function RegistroDOE({ onBack }) {
             <button onClick={onBack}>Volver</button>
 
             <form onSubmit={handleAgregar} className="registro-form">
-                <input
-                    type="text"
-                    name="nombre"
-                    placeholder="Nombre del alumno"
-                    value={nuevoAlumno.nombre}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    name="curso"
-                    placeholder="Curso"
-                    value={nuevoAlumno.curso}
-                    onChange={handleChange}
-                />
-                <input
-                    type="date"
-                    name="fecha"
-                    value={nuevoAlumno.fecha}
-                    onChange={handleChange}
-                />
+                <input name="nombre" placeholder="Nombre del alumno" value={nuevoAlumno.nombre} onChange={handleChange} />
+                <input name="curso" placeholder="Curso" value={nuevoAlumno.curso} onChange={handleChange} />
+                <input type="date" name="fecha" value={nuevoAlumno.fecha} onChange={handleChange} />
+                <input name="dni" placeholder="DNI" value={nuevoAlumno.dni} onChange={handleChange} />
+                <input name="edad" placeholder="Edad" value={nuevoAlumno.edad} onChange={handleChange} />
+                <input name="direccion" placeholder="DirecciÃ³n" value={nuevoAlumno.direccion} onChange={handleChange} />
+                <input name="telefono" placeholder="TelÃ©fono" value={nuevoAlumno.telefono} onChange={handleChange} />
+                <input name="tutor" placeholder="Tutor o responsable" value={nuevoAlumno.tutor} onChange={handleChange} />
                 <button type="submit">Agregar Alumno</button>
             </form>
 
