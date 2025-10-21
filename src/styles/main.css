@@ -1,44 +1,211 @@
-.chat-container {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+/* ====== ESTILOS GENERALES ====== */
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
+h2, h3 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+/* ====== BOTONES ROJOS ====== */
+button {
+    background: #e74c3c; /* rojo principal */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+    button:hover {
+        background: #c0392b; /* rojo más oscuro */
+        transform: scale(1.02);
+        box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+    }
+
+    button:disabled {
+        background: #e0a29b;
+        cursor: not-allowed;
+    }
+
+/* ====== CONTENEDORES ====== */
+.chat-container,
+.detalle-container,
+.registro-container,
+.menu-container,
+.observacion-detalle {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* ====== HEADER ====== */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
 }
 
+    header h2 {
+        margin: 0;
+        color: #2c3e50;
+    }
+
+.chat-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* ====== CHAT ====== */
 .chat-box {
-  height: 300px;
-  overflow-y: auto;
-  border: 1px solid #ddd;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  background: #fafafa;
+    height: 350px;
+    overflow-y: auto;
+    border: 1px solid #e1e1e1;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #fafafa;
+    border-radius: 8px;
 }
 
 .message {
-  margin-bottom: 0.5rem;
+    background: #fcebea;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.6rem;
+    border-radius: 8px;
+    line-height: 1.4;
+    border-left: 4px solid #e74c3c;
 }
 
-.no-messages {
-  color: #888;
-  font-style: italic;
-  text-align: center;
+    .message strong {
+        color: #2c3e50;
+    }
+
+    .message.sending {
+        opacity: 0.6;
+        font-style: italic;
+    }
+
+.user-type {
+    color: #777;
+    margin-left: 4px;
 }
 
-.message-form {
-  display: flex;
-  gap: 0.5rem;
+.message-form,
+form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
-.message-form input {
-  flex: 1;
-  padding: 0.5rem;
+    .message-form input,
+    form input,
+    form textarea {
+        flex: 1;
+        padding: 0.6rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 0.95rem;
+    }
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
 }
 
+/* ====== REGISTRO DOE ====== */
+.registro-lista {
+    list-style: none;
+    padding: 0;
+}
+
+    .registro-lista li {
+        background: #fdf3f3;
+        margin-bottom: 0.5rem;
+        padding: 0.7rem;
+        border-radius: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+.registro-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+/* ====== MENU PRINCIPAL ====== */
+.menu-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.private-chat-section {
+    margin-top: 1.5rem;
+}
+
+.search-results {
+    list-style: none;
+    margin: 0.5rem 0;
+    padding: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+    .search-results li {
+        padding: 0.5rem;
+        cursor: pointer;
+    }
+
+        .search-results li:hover {
+            background: #fcebea;
+        }
+
+/* ====== OBSERVACIONES ====== */
+.observacion-detalle {
+    text-align: left;
+}
+
+    .observacion-detalle p {
+        line-height: 1.5;
+    }
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 600px) {
+    .chat-container,
+    .detalle-container,
+    .registro-container,
+    .menu-container {
+        padding: 1rem;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .chat-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .message-form {
+        flex-direction: column;
+    }
+}
