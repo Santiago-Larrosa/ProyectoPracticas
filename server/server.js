@@ -5,6 +5,8 @@ import authRoutes from './routes/auth.js';
 import messageRoutes from './routes/messages.js';
 import dotenv from 'dotenv';
 import userRoutes from './routes/users.js';
+import alumnosRoutes from './routes/alumnos.js';
+app.use('/api/alumnos', alumnosRoutes);
 
 dotenv.config();
 
