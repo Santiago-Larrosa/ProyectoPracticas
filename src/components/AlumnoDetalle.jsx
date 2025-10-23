@@ -6,21 +6,24 @@ function AlumnoDetalle({ alumno, onBack, onUpdate }) {
     const [nuevaObs, setNuevaObs] = useState({ titulo: "", texto: "" });
     const [obsSeleccionada, setObsSeleccionada] = useState(null);
 
-    const handleAgregarObs = (e) => {
+    const handleAgregarObs = async (e) => {
         e.preventDefault();
         if (!nuevaObs.titulo.trim() || !nuevaObs.texto.trim()) return;
 
-        const nueva = {
-            id: Date.now(),
-            titulo: nuevaObs.titulo,
-            texto: nuevaObs.texto,
-            fecha: new Date().toISOString().split('T')[0]
-        };
+        try {
+            const res = await fetch(`/api/alumnos/${alumno._id}/observaciones`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(nuevaObs)
+            });
 
-        const actualizado = { ...alumno, observaciones: [...observaciones, nueva] };
-        setObservaciones(actualizado.observaciones);
-        setNuevaObs({ titulo: "", texto: "" });
-        onUpdate(actualizado);
+            const actualizado = await res.json();
+            setObservaciones(actualizado.observaciones);
+            setNuevaObs({ titulo: "", texto: "" });
+            onUpdate(actualizado);
+        } catch (err) {
+            console.error('Error al agregar observación:', err);
+        }
     };
 
     if (obsSeleccionada) {
@@ -48,7 +51,7 @@ function AlumnoDetalle({ alumno, onBack, onUpdate }) {
             <h3>Observaciones</h3>
             <ul>
                 {observaciones.map((obs) => (
-                    <li key={obs.id}>
+                    <li key={obs._id}>
                         <strong>{obs.titulo}</strong> ({obs.fecha})
                         <button onClick={() => setObsSeleccionada(obs)}>Ver</button>
                     </li>

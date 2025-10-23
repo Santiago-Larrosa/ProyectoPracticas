@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+﻿import { useState, useEffect } from 'react';
 import AlumnoDetalle from './AlumnoDetalle';
 import './Chat.css';
 
@@ -16,22 +16,37 @@ function RegistroDOE({ onBack }) {
     });
     const [alumnoSeleccionado, setAlumnoSeleccionado] = useState(null);
 
+    // 🔹 Cargar alumnos desde la API al montar el componente
+    useEffect(() => {
+        fetch('/api/alumnos')
+            .then(res => res.json())
+            .then(data => setAlumnos(data))
+            .catch(err => console.error('Error al cargar alumnos:', err));
+    }, []);
+
     const handleChange = (e) => {
         setNuevoAlumno({ ...nuevoAlumno, [e.target.name]: e.target.value });
     };
 
-    const handleAgregar = (e) => {
+    const handleAgregar = async (e) => {
         e.preventDefault();
         if (!nuevoAlumno.nombre || !nuevoAlumno.curso) return;
 
-        setAlumnos([
-            ...alumnos,
-            { id: Date.now(), ...nuevoAlumno, observaciones: [] }
-        ]);
-        setNuevoAlumno({
-            nombre: "", curso: "", fecha: "", dni: "",
-            edad: "", direccion: "", telefono: "", tutor: ""
-        });
+        try {
+            const res = await fetch('/api/alumnos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(nuevoAlumno)
+            });
+            const data = await res.json();
+            setAlumnos([...alumnos, data]);
+            setNuevoAlumno({
+                nombre: "", curso: "", fecha: "", dni: "",
+                edad: "", direccion: "", telefono: "", tutor: ""
+            });
+        } catch (err) {
+            console.error('Error al agregar alumno:', err);
+        }
     };
 
     const handleAbrirAlumno = (alumno) => {
@@ -39,7 +54,7 @@ function RegistroDOE({ onBack }) {
     };
 
     const handleActualizarAlumno = (alumnoActualizado) => {
-        setAlumnos(alumnos.map(a => a.id === alumnoActualizado.id ? alumnoActualizado : a));
+        setAlumnos(alumnos.map(a => a._id === alumnoActualizado._id ? alumnoActualizado : a));
         setAlumnoSeleccionado(alumnoActualizado);
     };
 
@@ -73,7 +88,7 @@ function RegistroDOE({ onBack }) {
             <h3>Lista de alumnos</h3>
             <ul className="registro-lista">
                 {alumnos.map((a) => (
-                    <li key={a.id}>
+                    <li key={a._id}>
                         <strong>{a.nombre}</strong> ({a.curso}) - {a.fecha}
                         <button onClick={() => handleAbrirAlumno(a)}>Ver registro</button>
                     </li>
