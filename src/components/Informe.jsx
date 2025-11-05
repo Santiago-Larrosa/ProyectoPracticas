@@ -9,6 +9,11 @@ function Informe({ onBack }) {
     window.print();
   };
 
+  const autoGrow = (e) => {
+    e.target.style.height = "auto";
+    e.target.style.height = (e.target.scrollHeight) + "px";
+  };
+
   return (
     <div ref={containerRef} className="container">
       <h1>INFORME DE CONVIVENCIA</h1>
@@ -27,7 +32,7 @@ function Informe({ onBack }) {
 
       <div className="form-group">
         <label>2.- Ha realizado la acción que se describe a continuación:</label>
-        <input type="text" className="input-line" />
+        <textarea className="textarea-expand" onInput={autoGrow} placeholder="Describa la acción realizada"></textarea>
       </div>
 
       <div className="form-group">
@@ -36,7 +41,7 @@ function Informe({ onBack }) {
 
       <div className="form-group">
         <label>3.- Solicitud de sanción:</label>
-        <input type="text" className="input-line" placeholder="Descripción de la sanción" />
+        <textarea className="textarea-expand" onInput={autoGrow} placeholder="Descripción de la sanción" />
       </div>
 
       <div className="form-group">
@@ -51,22 +56,22 @@ function Informe({ onBack }) {
 
       <div className="form-group">
         <label>4.- Descargo del Alumno/a:</label>
-        <input type="text" className="input-line" />
+        <textarea className="textarea-expand" onInput={autoGrow} placeholder="Descargo del alumno/a" />
       </div>
 
       <div className="form-group">
         <label>5.- Informe de Consejo de Aula:</label>
-        <input type="text" className="input-line" />
+        <textarea className="textarea-expand" onInput={autoGrow} placeholder="Informe del Consejo de Aula" />
       </div>
 
       <div className="form-group">
         <label>6.- Informe de Consejo de Convivencia:</label>
-        <input type="text" className="input-line" />
+        <textarea className="textarea-expand" onInput={autoGrow} placeholder="Informe del Consejo de Convivencia" />
       </div>
 
       <div className="form-group">
         <label>7.- Observaciones:</label>
-        <input type="text" className="input-line" />
+        <textarea className="textarea-expand" onInput={autoGrow} placeholder="Observaciones adicionales" />
       </div>
 
       <div className="form-group">
@@ -80,7 +85,7 @@ function Informe({ onBack }) {
 
       <div className="form-group">
         <label>Otra Consideración:</label>
-        <input type="text" className="input-line" />
+        <textarea className="textarea-expand" onInput={autoGrow} />
       </div>
 
       <div className="form-group">
